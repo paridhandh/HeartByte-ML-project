@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About the Model</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="hero">
+    <h1><i class="fas fa-info-circle"></i> About HeartByte</h1>
+    <p>Understanding our technology, mission, and commitment to heart health</p>
+</div>
+
+<div class="info-page">
+    <!-- Mission Section -->
+    <section class="fade-in">
+        <h2><i class="fas fa-heart"></i> Our Mission</h2>
+        <p>
+            HeartByte is an advanced machine learning system designed to help individuals assess their cardiovascular disease risk. 
+            Our mission is to make heart health assessment accessible, accurate, and actionable for everyone.
+        </p>
+        <p>
+            We believe that early detection and awareness are crucial in preventing cardiovascular diseases, which remain the leading 
+            cause of death globally. By leveraging cutting-edge AI technology and comprehensive health data, we aim to empower 
+            individuals to take control of their heart health.
+        </p>
+    </section>
+
+    <!-- What We Analyze Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-bullseye"></i> What We Analyze</h2>
+        <p>Our platform uses an Random Forest machine learning model trained on over 68,000 patient records to provide accurate cardiovascular disease risk predictions. The system analyzes multiple health parameters:</p>
+        
+        <div class="grid" style="margin-top: 2rem;">
+            <div class="info-box">
+                <i class="fas fa-user-check" style="font-size: 3rem; color: var(--primary); margin-bottom: 1rem;"></i>
+                <h2>Demographics</h2>
+                <p>Age, gender, height, and weight to calculate BMI and assess age-related risk factors</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-heartbeat" style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;"></i>
+                <h2>Vital Signs</h2>
+                <p>Systolic and diastolic blood pressure measurements for hypertension assessment</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-vial" style="font-size: 3rem; color: var(--success); margin-bottom: 1rem;"></i>
+                <h2>Lab Results</h2>
+                <p>Cholesterol and glucose levels to identify metabolic risk factors</p>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-running" style="font-size: 3rem; color: var(--warning); margin-bottom: 1rem;"></i>
+                <h2>Lifestyle</h2>
+                <p>Physical activity, smoking habits, and alcohol consumption patterns</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dataset Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-database"></i> Dataset & Training</h2>
+        <p>Our model is built on a comprehensive cardiovascular dataset containing demographic, clinical, and lifestyle features from real patient records.</p>
+        
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3><i class="fas fa-chart-line"></i> Large-Scale Data</h3>
+                <p>Trained on over 68,000 validated patient records with confirmed cardiovascular outcomes</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-cogs"></i> Robust Preprocessing</h3>
+                <p>Advanced data cleaning, feature engineering (BMI calculation), and standardization techniques</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-brain"></i> Random Forest Algorithm</h3>
+                <p>Supervised machine learning classification using one of the most powerful algorithms in healthcare AI</p>
+            </div>
+            <div class="feature-item">
+                <h3><i class="fas fa-check-circle"></i> Validated Accuracy</h3>
+                <p>Achieves 73.4% accuracy on test data with continuous validation and improvement</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Trust Us Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-shield-alt"></i> Why Trust HeartByte</h2>
+        
+        <div class="risk-factors" style="background: var(--pastel-blue);">
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">
+                    <i class="fas fa-chart-bar"></i> Data-Driven Accuracy
+                </h3>
+                <p style="color: var(--text-dark);">
+                    Our model achieves 73.4% accuracy on test data, trained on a comprehensive dataset of real patient records with validated outcomes.
+                </p>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">
+                    <i class="fas fa-microscope"></i> Scientific Methodology
+                </h3>
+                <p style="color: var(--text-dark);">
+                    We use Random Forest, one of the most powerful and widely-used machine learning algorithms in healthcare, combined with proper data preprocessing and feature engineering.
+                </p>
+            </div>
+            
+            <div style="margin-bottom: 1.5rem;">
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">
+                    <i class="fas fa-eye"></i> Transparent Process
+                </h3>
+                <p style="color: var(--text-dark);">
+                    We provide detailed explanations of our methodology and are committed to transparency in how predictions are made.
+                </p>
+            </div>
+            
+            <div>
+                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">
+                    <i class="fas fa-sync-alt"></i> Continuous Improvement
+                </h3>
+                <p style="color: var(--text-dark);">
+                    Our system is regularly updated and validated against new data to maintain accuracy and relevance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-code"></i> Technology Stack</h2>
+        <p>Built with modern, robust technologies to ensure reliability and performance:</p>
+        
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.5rem;">
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fab fa-python"></i> Python
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fas fa-flask"></i> Flask
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fas fa-rocket"></i> Random Forest
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fas fa-brain"></i> Scikit-learn
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fas fa-table"></i> Pandas
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fas fa-calculator"></i> NumPy
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fas fa-chart-line"></i> Chart.js
+            </span>
+            <span style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 0.75rem 1.5rem; border-radius: 50px; font-weight: 600; box-shadow: var(--shadow-md);">
+                <i class="fab fa-html5"></i> HTML/CSS/JS
+            </span>
+        </div>
+    </section>
+
+    <!-- Training Pipeline Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-project-diagram"></i> Training Pipeline</h2>
+        <div class="confidence-box" style="text-align: left;">
+            <ol style="margin-left: 1.5rem; color: var(--text-dark);">
+                <li style="margin-bottom: 0.8rem;"><strong>Data Collection:</strong> Gathering comprehensive patient records with validated outcomes</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Data Preprocessing & Cleaning:</strong> Handling missing values, outliers, and data quality issues</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Feature Engineering:</strong> Creating derived features like BMI from height and weight</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Manual Standardization:</strong> Normalizing features for optimal model performance</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Model Training:</strong> Supervised machine learning classification using Random Forest</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Validation & Testing:</strong> Rigorous evaluation on unseen data</li>
+                <li><strong>Continuous Monitoring:</strong> Regular updates and performance tracking</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Limitations Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-exclamation-triangle"></i> Limitations</h2>
+        <div class="warning-banner" style="border-radius: 12px; text-align: left;">
+            <p style="margin-bottom: 0.8rem;">
+                <strong>Model Limitations:</strong> Machine learning models are not perfect and depend heavily on the quality and representativeness of training data. Predictions may be affected by:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+                <li>Data bias in the training set</li>
+                <li>Noise or errors in input measurements</li>
+                <li>Rare or unseen medical conditions</li>
+                <li>Individual variations not captured in the training data</li>
+                <li>Changes in medical understanding and standards</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Medical Disclaimer Section -->
+    <section class="fade-in" style="margin-top: 3rem;">
+        <h2><i class="fas fa-file-medical"></i> Medical Disclaimer</h2>
+        <div class="medical-disclaimer">
+            <h3><i class="fas fa-exclamation-circle"></i> Important Notice</h3>
+            <p>
+                <strong>HeartByte is a predictive tool designed for informational and educational purposes only.</strong> 
+                It should NOT be used as a substitute for professional medical advice, diagnosis, or treatment.
+            </p>
+            <p>
+                Always consult with qualified healthcare professionals regarding any health concerns or before making any 
+                decisions related to your health or treatment. Never disregard professional medical advice or delay seeking 
+                it because of information provided by this tool.
+            </p>
+            <p>
+                This application does NOT provide medical advice, diagnosis, or treatment. The predictions are based on 
+                statistical patterns and should be interpreted within the context of a comprehensive medical evaluation 
+                by a licensed healthcare provider.
+            </p>
+            <p style="text-align: center; margin-top: 1.5rem; font-style: italic; font-weight: 600; color: var(--primary);">
+                "Prevention is better than cure. Take charge of your heart health today."
+            </p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--pastel-blue); border-radius: 16px;">
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">
+            <i class="fas fa-heartbeat"></i> Ready to Check Your Heart Health?
+        </h3>
+        <p style="color: var(--text-dark); margin-bottom: 1.5rem;">
+            Take the first step towards understanding your cardiovascular risk
+        </p>
+        <a href="{{ url_for('predict') }}" class="cta">
+            <i class="fas fa-arrow-right"></i> Start Assessment
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 HeartByte. All rights reserved.</p>
+    <p>For educational and informational purposes only.</p>
+</footer>
+
+</body>
+</html>

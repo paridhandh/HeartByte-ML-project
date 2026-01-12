@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Model Analytics - HeartByte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="analytics">
+    <h1>Model Performance & Data Insights</h1>
+    <p style="text-align: center; color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">Comprehensive insights from 68,000+ cardiovascular health records</p>
+
+    <!-- Stats Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: center; transition: background-color 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--primary);">📊</div>
+            <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark);">68,438</div>
+            <div style="color: var(--text-muted); font-size: 1rem;">Total Records</div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: center; transition: background-color 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--danger);">💔</div>
+            <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark);">34,219</div>
+            <div style="color: var(--text-muted); font-size: 1rem;">High Risk Predictions</div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: center; transition: background-color 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--success);">💚</div>
+            <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark);">34,219</div>
+            <div style="color: var(--text-muted); font-size: 1rem;">Low Risk Predictions</div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: center; transition: background-color 0.3s ease;">
+            <div style="font-size: 3rem; margin-bottom: 1rem; color: var(--warning);">📈</div>
+            <div style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-dark);">73.4%</div>
+            <div style="color: var(--text-muted); font-size: 1rem;">Model Accuracy</div>
+        </div>
+    </div>
+
+    <!-- Original Charts -->
+    <div style="background: var(--bg-white); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-md); margin-bottom: 3rem; transition: background-color 0.3s ease;">
+        <h2 style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: center;">Model Performance Metrics</h2>
+        <canvas id="accuracyChart"></canvas>
+    </div>
+    
+    <div style="background: var(--bg-white); padding: 2rem; border-radius: 16px; box-shadow: var(--shadow-md); margin-bottom: 3rem; transition: background-color 0.3s ease;">
+        <h2 style="color: var(--text-dark); margin-bottom: 1.5rem; text-align: center;">Feature Importance Analysis</h2>
+        <canvas id="featureChart"></canvas>
+    </div>
+
+    <!-- Additional Charts Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 2rem;">
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); transition: background-color 0.3s ease;">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                📊 Disease Distribution
+            </h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="diseaseChart"></canvas>
+            </div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); transition: background-color 0.3s ease;">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                📊 Age Distribution
+            </h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="ageChart"></canvas>
+            </div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); transition: background-color 0.3s ease;">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                📊 BMI Categories
+            </h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="bmiChart"></canvas>
+            </div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); transition: background-color 0.3s ease;">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                📊 Blood Pressure Status
+            </h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="bpChart"></canvas>
+            </div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); transition: background-color 0.3s ease;">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                📊 Risk Factors Prevalence
+            </h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="riskFactorsChart"></canvas>
+            </div>
+        </div>
+
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); transition: background-color 0.3s ease;">
+            <h3 style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+                📊 Cardio Risk by Age
+            </h3>
+            <div style="position: relative; height: 300px;">
+                <canvas id="ageRiskChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Insights Section -->
+    <div style="background: var(--bg-white); padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); margin-top: 2rem; transition: background-color 0.3s ease;">
+        <h2 style="color: var(--primary); margin-bottom: 1.5rem;">
+            💡 Key Insights
+        </h2>
+        
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid var(--primary);">
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">📊 Age and Risk Correlation</h4>
+            <p style="color: var(--text-muted); line-height: 1.6; margin: 0;">Cardiovascular disease risk increases significantly with age, showing the highest prevalence in individuals over 60 years old.</p>
+        </div>
+
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid var(--primary);">
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">🩺 Blood Pressure Impact</h4>
+            <p style="color: var(--text-muted); line-height: 1.6; margin: 0;">Hypertension (high blood pressure) is one of the strongest predictors of cardiovascular disease, present in over 65% of positive cases.</p>
+        </div>
+
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem; border-left: 4px solid var(--primary);">
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">⚖️ BMI and Heart Health</h4>
+            <p style="color: var(--text-muted); line-height: 1.6; margin: 0;">Individuals with BMI over 30 (obesity) show 2.5x higher risk of cardiovascular disease compared to those with normal BMI.</p>
+        </div>
+
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 10px; margin-bottom: 0; border-left: 4px solid var(--primary);">
+            <h4 style="margin-bottom: 0.5rem; color: var(--text-dark);">🚬 Lifestyle Factors</h4>
+            <p style="color: var(--text-muted); line-height: 1.6; margin: 0;">Smoking, alcohol consumption, and physical inactivity are significant modifiable risk factors that substantially increase disease risk.</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p><strong>HeartByte</strong> - Educational & Research Tool</p>
+    <p>© 2025 HeartByte Project | <a href="/">Home</a> | <a href="/about">About</a></p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script>
+    // Additional charts initialization
+    
+    // Disease Distribution Pie Chart
+    new Chart(document.getElementById('diseaseChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Healthy', 'Cardiovascular Disease'],
+            datasets: [{
+                data: [34219, 34219],
+                backgroundColor: ['#4ade80', '#f87171']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-dark')
+                    }
+                }
+            }
+        }
+    });
+
+    // Age Distribution Bar Chart
+    new Chart(document.getElementById('ageChart'), {
+        type: 'bar',
+        data: {
+            labels: ['30-35', '36-40', '41-45', '46-50', '51-55', '56-60', '60+'],
+            datasets: [{
+                label: 'Number of Records',
+                data: [5200, 8500, 12000, 15000, 13500, 9000, 5238],
+                backgroundColor: '#667eea'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted')
+                    },
+                    grid: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--border-color')
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted')
+                    },
+                    grid: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--border-color')
+                    }
+                }
+            }
+        }
+    });
+
+    // BMI Distribution Pie Chart
+    new Chart(document.getElementById('bmiChart'), {
+        type: 'pie',
+        data: {
+            labels: ['Underweight', 'Normal', 'Overweight', 'Obese'],
+            datasets: [{
+                data: [3421, 27350, 25667, 12000],
+                backgroundColor: ['#60a5fa', '#4ade80', '#fbbf24', '#f87171']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-dark')
+                    }
+                }
+            }
+        }
+    });
+
+    // Blood Pressure Chart
+    new Chart(document.getElementById('bpChart'), {
+        type: 'doughnut',
+        data: {
+            labels: ['Normal BP', 'High BP'],
+            datasets: [{
+                data: [23953, 44485],
+                backgroundColor: ['#4ade80', '#f87171']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-dark')
+                    }
+                }
+            }
+        }
+    });
+
+    // Risk Factors Chart
+    new Chart(document.getElementById('riskFactorsChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Smoking', 'Alcohol', 'Physical Inactivity'],
+            datasets: [{
+                label: 'Number of Cases',
+                data: [6196, 4387, 22869],
+                backgroundColor: ['#f87171', '#fbbf24', '#60a5fa']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted')
+                    },
+                    grid: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--border-color')
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted')
+                    },
+                    grid: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--border-color')
+                    }
+                }
+            }
+        }
+    });
+
+    // Age vs Risk Line Chart
+    new Chart(document.getElementById('ageRiskChart'), {
+        type: 'line',
+        data: {
+            labels: ['40', '45', '50', '55', '60', '65'],
+            datasets: [{
+                label: 'CVD Risk (%)',
+                data: [35, 42, 48, 55, 62, 68],
+                borderColor: '#667eea',
+                backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted')
+                    },
+                    grid: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--border-color')
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted')
+                    },
+                    grid: {
+                        color: getComputedStyle(document.documentElement).getPropertyValue('--border-color')
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

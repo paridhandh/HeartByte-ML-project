@@ -1,0 +1,207 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeartByte – AI-Powered Heart Disease Risk Assessment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<header class="hero fade-in">
+    <h1><i class="fas fa-heartbeat"></i> AI-Powered Cardiovascular Risk Assessment</h1>
+    <p>Advanced machine learning system trained on 70,000+ cardiovascular health records</p>
+    <a href="/predict" class="cta">Start Risk Assessment →</a>
+</header>
+
+<section class="warning-banner">
+    ⚠️ IMPORTANT: This system is for educational and screening purposes only. It does NOT replace professional medical diagnosis or consultation with a healthcare provider.
+</section>
+
+<div class="medical-disclaimer fade-in">
+    <h3>🏥 Medical Disclaimer</h3>
+    <p><strong>This tool provides risk estimates based on statistical patterns, not definitive diagnoses.</strong></p>
+    <p>Machine learning models can identify patterns but cannot account for all medical complexities. Always consult with a qualified healthcare professional before making any medical decisions. If you experience chest pain, shortness of breath, or other cardiac symptoms, seek immediate medical attention.</p>
+</div>
+
+<section class="grid fade-in">
+    <div class="info-box">
+        <h2>📊 Model Accuracy</h2>
+        <p class="big">73.4%</p>
+        <p>Validated on diverse population data with balanced sensitivity and specificity</p>
+    </div>
+    <div class="info-box">
+        <h2>🗂️ Training Dataset</h2>
+        <p class="big">70,000+</p>
+        <p>Comprehensive cardiovascular health records with multiple clinical parameters</p>
+    </div>
+    <div class="info-box">
+        <h2>🎯 Primary Use Case</h2>
+        <p class="big">Screening</p>
+        <p>Early risk identification for preventive care and lifestyle intervention</p>
+    </div>
+</section>
+
+<section class="grid fade-in">
+    <div class="info-box">
+        <h2>🔬 Model Type</h2>
+        <p style="font-size: 1.3rem; font-weight: 600; color: var(--secondary);">Random Forest Classifier</p>
+        <p>Ensemble learning method providing robust and interpretable predictions</p>
+    </div>
+    <div class="info-box">
+        <h2>⚡ Features Analyzed</h2>
+        <p style="font-size: 1.3rem; font-weight: 600; color: var(--secondary);">12 Parameters</p>
+        <p>Demographics, vitals, blood markers, and lifestyle factors</p>
+    </div>
+    <div class="info-box">
+        <h2>🔒 Privacy</h2>
+        <p style="font-size: 1.3rem; font-weight: 600; color: var(--secondary);">No Data Stored</p>
+        <p>All predictions processed locally, no personal data retention</p>
+    </div>
+</section>
+
+<div style="max-width: 1200px; margin: 4rem auto; padding: 0 5%;">
+    <h2 style="text-align: center; color: var(--secondary); margin-bottom: 2rem; font-size: 2rem;">How It Works</h2>
+    
+    <div class="feature-list">
+        <div class="feature-item">
+            <h3 style="color: var(--secondary); margin-bottom: 0.8rem;">1️⃣ Input Health Data</h3>
+            <p>Enter demographic information, vital signs, blood test results, and lifestyle factors through our secure form.</p>
+        </div>
+        
+        <div class="feature-item">
+            <h3 style="color: var(--secondary); margin-bottom: 0.8rem;">2️⃣ AI Analysis</h3>
+            <p>Our trained Random Forest model analyzes patterns across 12 clinical and lifestyle parameters.</p>
+        </div>
+        
+        <div class="feature-item">
+            <h3 style="color: var(--secondary); margin-bottom: 0.8rem;">3️⃣ Risk Assessment</h3>
+            <p>Receive an evidence-based risk prediction with identified contributing factors and confidence score.</p>
+        </div>
+        
+        <div class="feature-item">
+            <h3 style="color: var(--secondary); margin-bottom: 0.8rem;">4️⃣ Take Action</h3>
+            <p>Use results to inform discussions with your healthcare provider about preventive measures.</p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Technical Specs Section -->
+<section class="grid fade-in" style="background: var(--bg-white); padding: 3rem 5%; margin: 3rem 0; border-radius: 0;">
+    <div class="info-box" style="background: linear-gradient(135deg, var(--pastel-blue), transparent);">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔬</div>
+        <h2>Model Type</h2>
+        <p style="font-size: 1.3rem; font-weight: 600; color: var(--secondary); margin: 1rem 0;">Random Forest Classifier</p>
+        <p>Ensemble learning method providing robust and interpretable predictions with feature importance analysis</p>
+    </div>
+    <div class="info-box" style="background: linear-gradient(135deg, var(--pastel-green), transparent);">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">⚡</div>
+        <h2>Features Analyzed</h2>
+        <p style="font-size: 1.3rem; font-weight: 600; color: var(--secondary); margin: 1rem 0;">12 Parameters</p>
+        <p>Demographics, vital signs, blood markers, and lifestyle factors comprehensively evaluated</p>
+    </div>
+    <div class="info-box" style="background: linear-gradient(135deg, var(--pastel-purple), transparent);">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔐</div>
+        <h2>Privacy</h2>
+        <p style="font-size: 1.3rem; font-weight: 600; color: var(--secondary); margin: 1rem 0;">Zero Data Storage</p>
+        <p>All predictions processed locally with no personal data retention or tracking</p>
+    </div>
+</section>
+
+<!-- Features Highlight -->
+<div style="background: linear-gradient(135deg, var(--pastel-blue) 0%, var(--pastel-green) 100%); padding: 4rem 3rem; border-radius: 30px; max-width: 1100px; margin: 4rem auto; box-shadow: 0 20px 60px rgba(0,0,0,0.15); position: relative; overflow: hidden;">
+    <!-- Decorative Elements -->
+    <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: var(--primary); opacity: 0.1; border-radius: 50%; filter: blur(60px);"></div>
+    <div style="position: absolute; bottom: -50px; left: -50px; width: 200px; height: 200px; background: var(--success); opacity: 0.1; border-radius: 50%; filter: blur(60px);"></div>
+    
+    <div style="position: relative; z-index: 1;">
+        <h2 style="text-align: center; color: var(--secondary); margin-bottom: 3rem; font-size: 2rem;">Key Features & Benefits</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="font-size: 3.5rem; margin-bottom: 1rem;">🎯</div>
+                <strong style="display: block; color: var(--secondary); font-size: 1.1rem; margin-bottom: 0.5rem;">Comprehensive Analysis</strong>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--text-muted);">12-parameter deep assessment</p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="font-size: 3.5rem; margin-bottom: 1rem;">⚡</div>
+                <strong style="display: block; color: var(--secondary); font-size: 1.1rem; margin-bottom: 0.5rem;">Lightning Fast</strong>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--text-muted);">Real-time predictions</p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="font-size: 3.5rem; margin-bottom: 1rem;">📈</div>
+                <strong style="display: block; color: var(--secondary); font-size: 1.1rem; margin-bottom: 0.5rem;">Validated Model</strong>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--text-muted);">73.4% accuracy rate</p>
+            </div>
+            <div style="text-align: center; padding: 1.5rem; background: rgba(255, 255, 255, 0.9); border-radius: 20px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <div style="font-size: 3.5rem; margin-bottom: 1rem;">🔐</div>
+                <strong style="display: block; color: var(--secondary); font-size: 1.1rem; margin-bottom: 0.5rem;">Privacy First</strong>
+                <p style="font-size: 0.9rem; margin: 0; color: var(--text-muted);">Zero data retention</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); padding: 4rem 5%; text-align: center; margin: 4rem 0; position: relative; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.05&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); opacity: 0.1;"></div>
+    
+    <div style="position: relative; z-index: 1;">
+        <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">
+            Ready to Check Your Heart Health?
+        </h2>
+
+        <p style="color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            Get your personalized cardiovascular risk assessment in less than 2 minutes
+        </p>
+
+        <a href="/predict"
+           style="display: inline-block; padding: 1.2rem 3rem; background: white; color: var(--primary); border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.3s ease;"
+           onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 15px 40px rgba(0,0,0,0.3)'"
+           onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.2)'">
+            Start Free Assessment →
+        </a>
+
+        <p style="color: rgba(255, 255, 255, 0.8); font-size: 0.9rem; margin-top: 1.5rem;">
+            ✓ No registration required ✓ 100% confidential ✓ Results in seconds
+        </p>
+    </div>
+</div>
+
+
+<!-- Testimonials/Trust Section -->
+<div style="max-width: 1200px; margin: 4rem auto; padding: 0 5%;">
+    <h2 style="text-align: center; color: var(--secondary); margin-bottom: 3rem; font-size: 2rem;">Trusted by Healthcare Educators</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 20px; box-shadow: var(--shadow-md); border-left: 4px solid var(--primary);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🎓</div>
+            <h3 style="color: var(--secondary); margin-bottom: 1rem;">Educational Excellence</h3>
+            <p style="color: var(--text-muted);">Used by medical students and healthcare professionals to understand AI applications in cardiovascular screening</p>
+        </div>
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 20px; box-shadow: var(--shadow-md); border-left: 4px solid var(--success);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🔬</div>
+            <h3 style="color: var(--secondary); margin-bottom: 1rem;">Research-Backed</h3>
+            <p style="color: var(--text-muted);">Built on peer-reviewed machine learning methodologies and validated cardiovascular risk assessment principles</p>
+        </div>
+        <div style="background: var(--bg-white); padding: 2rem; border-radius: 20px; box-shadow: var(--shadow-md); border-left: 4px solid var(--accent);">
+            <div style="font-size: 2rem; margin-bottom: 1rem;">🌍</div>
+            <h3 style="color: var(--secondary); margin-bottom: 1rem;">Global Impact</h3>
+            <p style="color: var(--text-muted);">Promoting cardiovascular health awareness and preventive care through accessible AI technology</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <p><strong>HeartByte</strong> - Educational & Research Tool for Cardiovascular Risk Assessment</p>
+    <p>Not approved for clinical diagnosis | Always consult healthcare professionals</p>
+    <p style="margin-top: 1rem; font-size: 0.9rem;">© 2025 HeartByte Project | <a href="/about">About</a> | <a href="/faq">FAQ</a> | <a href="/methodology">Methodology</a></p>
+</footer>
+
+</body>
+</html>

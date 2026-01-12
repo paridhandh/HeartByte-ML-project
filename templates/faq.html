@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FAQ - HeartByte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="info-page fade-in">
+    <h1>❓ Frequently Asked Questions</h1>
+
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">What is HeartByte?</h2>
+        <p>HeartByte is an AI-powered cardiovascular risk assessment tool designed for educational and preliminary screening purposes. It uses machine learning to analyze health parameters and provide risk estimates based on patterns in large-scale medical data.</p>
+    </div>
+
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--success);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">Is this a medical diagnosis tool?</h2>
+        <p><strong>No.</strong> HeartByte is NOT a diagnostic tool and does not provide medical diagnoses. It offers preliminary risk assessments based on statistical patterns. All results should be discussed with a qualified healthcare professional. This tool does not replace professional medical examination, diagnosis, or treatment.</p>
+    </div>
+
+    <div style="background: var(--pastel-purple); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">How accurate is the prediction?</h2>
+        <p>The model has been validated with an accuracy of approximately 73% on test data. While this represents good performance for a screening tool, it means that approximately 27% of predictions may be incorrect. The model also provides sensitivity (71%), specificity (75%), and other metrics that indicate balanced performance across different types of cases.</p>
+        <p style="margin-top: 1rem;"><strong>Important:</strong> No machine learning model is 100% accurate, and individual results may vary significantly based on factors not captured by the model.</p>
+    </div>
+
+    <div style="background: var(--pastel-pink); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--accent);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">What should I do if I receive a "High Risk" result?</h2>
+        <p><strong>Do not panic.</strong> A high-risk result indicates that your input parameters show patterns associated with cardiovascular disease in the training data. This does not mean you have heart disease. You should:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>Schedule an appointment with your primary care physician</li>
+            <li>Discuss these results along with your complete medical history</li>
+            <li>Consider consulting a cardiologist for comprehensive evaluation</li>
+            <li>Do NOT make medical decisions based solely on this result</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">What should I do if I receive a "Low Risk" result?</h2>
+        <p>A low-risk result suggests that your parameters are associated with lower cardiovascular disease risk. However:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>Continue regular health check-ups as recommended by your doctor</li>
+            <li>Maintain healthy lifestyle habits (diet, exercise, no smoking)</li>
+            <li>Monitor your cardiovascular health regularly</li>
+            <li>Do NOT ignore symptoms or skip medical appointments</li>
+            <li>Remember that this is a screening tool, not a guarantee of health</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--success);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">Is my personal data stored or shared?</h2>
+        <p><strong>No.</strong> HeartByte does not store any personal health information. All predictions are processed in real-time, and no data is retained after you leave the website. Your privacy is our priority, and we do not collect, store, or share any personal or health data.</p>
+    </div>
+
+    <div style="background: var(--pastel-purple); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">What parameters does the model analyze?</h2>
+        <p>The model analyzes 12 key parameters:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li><strong>Demographics:</strong> Age, Gender</li>
+            <li><strong>Physical Measurements:</strong> Height, Weight, BMI</li>
+            <li><strong>Vital Signs:</strong> Systolic and Diastolic Blood Pressure</li>
+            <li><strong>Blood Markers:</strong> Cholesterol, Glucose levels</li>
+            <li><strong>Lifestyle:</strong> Smoking status, Alcohol consumption, Physical activity</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">What machine learning model is used?</h2>
+        <p>HeartByte uses a <strong>Random Forest Classifier</strong>, an ensemble learning method that combines multiple decision trees to make predictions. This algorithm was chosen for its robustness, interpretability, and strong performance on medical classification tasks. For more technical details, visit our <a href="/methodology" style="color: var(--primary); text-decoration: underline;">Methodology</a> page.</p>
+    </div>
+
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--success);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">How was the model trained and validated?</h2>
+        <p>The model was trained on a dataset of over 70,000 cardiovascular health records using standard machine learning practices:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>Data preprocessing and cleaning</li>
+            <li>Feature engineering and standardization</li>
+            <li>Train-test split (80-20)</li>
+            <li>Cross-validation during training</li>
+            <li>Evaluation on held-out test set</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-pink); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--accent);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">Can I use this tool for someone else?</h2>
+        <p>While you can technically enter data for another person, you should only do so if:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>You have their permission and accurate health information</li>
+            <li>They are aware this is a screening tool, not a diagnosis</li>
+            <li>They understand the importance of consulting healthcare professionals</li>
+        </ul>
+        <p style="margin-top: 1rem;"><strong>Never use this tool as a substitute for professional medical advice for yourself or others.</strong></p>
+    </div>
+
+    <div style="background: var(--pastel-purple); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">What are the limitations of this tool?</h2>
+        <p>HeartByte has several important limitations:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>Cannot detect rare or atypical cardiovascular conditions</li>
+            <li>Does not account for family history or genetic factors</li>
+            <li>Cannot consider symptoms or physical examination findings</li>
+            <li>May not generalize well to populations very different from training data</li>
+            <li>Predictions are probabilistic and subject to error</li>
+            <li>Does not replace comprehensive medical evaluation</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">Who developed HeartByte?</h2>
+        <p>HeartByte is an educational and research project designed to demonstrate the application of machine learning in healthcare screening. It is developed by students and researchers interested in AI applications in medicine. This project is not affiliated with any medical institution and is not approved as a medical device.</p>
+    </div>
+
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--success);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">How can I provide feedback?</h2>
+        <p>We welcome feedback to improve HeartByte! Please note that:</p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>We cannot provide medical advice or interpret your results</li>
+            <li>For medical questions, please consult a healthcare professional</li>
+            <li>Technical feedback and suggestions are appreciated</li>
+            <li>Bug reports and usability improvements help us serve users better</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-yellow); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--warning);">
+        <h2 style="color: var(--secondary); margin-bottom: 0.5rem;">When should I seek immediate medical attention?</h2>
+        <p><strong>Regardless of your HeartByte result, seek emergency medical care immediately if you experience:</strong></p>
+        <ul style="margin-left: 1.5rem; margin-top: 1rem; font-weight: 600;">
+            <li>Chest pain or pressure</li>
+            <li>Severe shortness of breath</li>
+            <li>Sudden numbness or weakness</li>
+            <li>Sudden severe headache</li>
+            <li>Loss of consciousness</li>
+            <li>Irregular or rapid heartbeat with other symptoms</li>
+        </ul>
+        <p style="margin-top: 1rem; font-weight: 600;">Call emergency services (112 in India) or go to the nearest emergency room immediately.</p>
+    </div>
+
+</div>
+
+<footer>
+    <p><strong>HeartByte</strong> - Educational & Research Tool</p>
+    <p>© 2025 HeartByte Project | <a href="/">Home</a> | <a href="/about">About</a> | <a href="/methodology">Methodology</a></p>
+</footer>
+
+</body>
+</html>

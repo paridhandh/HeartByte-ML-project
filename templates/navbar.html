@@ -1,0 +1,55 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+<nav class="navbar">
+    <div class="navbar-left">
+        <div class="logo">❤️ HeartByte</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/predict">Predict</a></li>
+            <li><a href="/analytics">Analytics</a></li>
+            <li><a href="/methodology">Methodology</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/faq">FAQ</a></li>
+        </ul>
+    </div>
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">
+        <span class="icon" id="theme-icon">🌙</span>
+        <span id="theme-text">Dark</span>
+    </button>
+</nav>
+
+<script>
+// Dark Mode Toggle Script
+function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    
+    updateThemeButton(newTheme);
+}
+
+function updateThemeButton(theme) {
+    const icon = document.getElementById('theme-icon');
+    const text = document.getElementById('theme-text');
+    
+    if (theme === 'dark') {
+        icon.textContent = '☀️';
+        text.textContent = 'Light';
+    } else {
+        icon.textContent = '🌙';
+        text.textContent = 'Dark';
+    }
+}
+
+// Initialize theme on page load
+(function initTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeButton(savedTheme);
+})();
+</script>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result - HeartByte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="result-card">
+    <h1>Prediction Result</h1>
+
+    <!-- Prediction Badge with Confidence -->
+    {% if "High" in prediction %}
+    <div style="text-align: center; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; background: linear-gradient(135deg, #f87171, #ef4444); color: white; box-shadow: var(--shadow-lg);">
+    {% else %}
+    <div style="text-align: center; padding: 2rem; border-radius: 15px; margin-bottom: 2rem; background: linear-gradient(135deg, #4ade80, #22c55e); color: white; box-shadow: var(--shadow-lg);">
+    {% endif %}
+        <h2 style="font-size: 2rem; margin-bottom: 0.5rem; color: white;">{{ prediction }}</h2>
+        {% if confidence %}
+        <div style="font-size: 1.5rem; font-weight: 600; opacity: 0.9; color: white;">
+            📈 Confidence: {{ confidence }}%
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Metrics Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--border-color); transition: background-color 0.3s ease;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">{{ bmi if bmi else 'N/A' }}</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem;">Body Mass Index</div>
+        </div>
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--border-color); transition: background-color 0.3s ease;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">{{ confidence if confidence else 'N/A' }}%</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem;">Model Confidence</div>
+        </div>
+        <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--border-color); transition: background-color 0.3s ease;">
+            <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">{{ risk_factors|length if risk_factors else 0 }}</div>
+            <div style="color: var(--text-muted); font-size: 0.9rem;">Risk Factors</div>
+        </div>
+    </div>
+
+    <!-- Risk Factors Section -->
+    <div style="margin: 2rem 0;">
+        <h3 style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-dark);">
+            ⚠️ Identified Risk Factors
+        </h3>
+        {% if risk_factors %}
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% for factor in risk_factors %}
+            <li style="background: var(--pastel-pink); padding: 1rem; border-radius: 10px; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem; border-left: 4px solid var(--danger); transition: background-color 0.3s ease;">
+                <span style="color: var(--danger); font-size: 1.25rem;">⚠️</span>
+                <span style="color: var(--text-dark);">{{ factor }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--success); display: flex; align-items: center; gap: 1rem; transition: background-color 0.3s ease;">
+            <span style="font-size: 2rem; color: var(--success);">✓</span>
+            <p style="margin: 0; color: var(--text-dark);">No major risk factors detected. Keep maintaining your healthy lifestyle!</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Recommendations Section -->
+    <div style="background: var(--bg-light); padding: 2rem; border-radius: 15px; margin: 2rem 0; transition: background-color 0.3s ease;">
+        <h3 style="color: var(--primary); margin-bottom: 1rem;">
+            💡 Recommendations
+        </h3>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            {% if "High" in prediction %}
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Consult with a healthcare professional for proper evaluation</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Monitor your blood pressure regularly</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Adopt a heart-healthy diet low in sodium and saturated fats</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Engage in regular physical activity (150 minutes per week)</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Manage stress through relaxation techniques</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Quit smoking and limit alcohol consumption</span>
+            </li>
+            {% else %}
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Maintain your current healthy lifestyle</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Continue regular physical activity</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Keep monitoring your health metrics</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Schedule regular check-ups with your doctor</span>
+            </li>
+            <li style="padding: 0.75rem 0; display: flex; align-items: start; gap: 0.75rem; color: var(--text-dark);">
+                <span style="color: var(--primary); margin-top: 0.25rem;">✓</span>
+                <span>Maintain a balanced, nutritious diet</span>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+    <!-- Important Notice -->
+    <div style="background: var(--pastel-yellow); padding: 1.5rem; border-radius: 10px; border-left: 4px solid var(--warning); margin-top: 2rem; transition: background-color 0.3s ease;">
+        <p style="margin: 0; color: var(--text-dark);"><strong>⚠️ Important:</strong> This is a predictive tool and should not replace professional medical advice. Always consult with healthcare professionals for proper diagnosis and treatment.</p>
+    </div>
+
+    <p class="disclaimer" style="color: var(--text-dark);">
+        ⚠ Machine learning predictions are probabilistic and may be incorrect.
+        Always consult a certified medical professional.
+    </p>
+
+    <!-- Action Buttons -->
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+        <a href="/predict" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: var(--primary); color: white; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            🔄 Check Another Patient
+        </a>
+        <a href="/analytics" style="text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: var(--success); color: white; border-radius: 10px; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">
+            📊 View Analytics
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p><strong>HeartByte</strong> - Educational & Research Tool</p>
+    <p>© 2025 HeartByte Project | <a href="/">Home</a> | <a href="/about">About</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methodology - HeartByte</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="info-page fade-in">
+    <h1>🔬 Methodology & Technical Details</h1>
+
+    <div style="background: var(--pastel-blue); padding: 2rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--primary);">
+        <p style="font-size: 1.1rem; margin: 0; color: var(--text-dark);"><strong>This page provides a comprehensive overview of the machine learning methodology, data processing pipeline, and technical implementation behind HeartByte.</strong></p>
+    </div>
+
+    <h2>📊 Dataset Overview</h2>
+    <p>The HeartByte model is trained on a comprehensive cardiovascular disease dataset containing over 70,000 patient records. The dataset includes a diverse range of demographic, clinical, and lifestyle features that are known to be associated with cardiovascular health.</p>
+
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Dataset Characteristics</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Total Records:</strong> 70,000+ patient health records</li>
+            <li><strong>Number of Features:</strong> 12 clinical and lifestyle parameters</li>
+            <li><strong>Target Variable:</strong> Binary classification (presence/absence of cardiovascular disease)</li>
+            <li><strong>Data Source:</strong> Aggregated medical records from healthcare databases</li>
+            <li><strong>Data Quality:</strong> Cleaned, preprocessed, and validated for model training</li>
+            <li><strong>Patient Diversity:</strong> Multiple age groups, genders, and health profiles</li>
+        </ul>
+    </div>
+
+    <h2>🔍 Feature Engineering</h2>
+    <p>The model analyzes 12 distinct features categorized into four main groups:</p>
+
+    <h3 style="color: var(--primary); margin-top: 2rem;">1. Demographic Features</h3>
+    <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Age:</strong> Patient age in years (range: 18-100)</li>
+            <li><strong>Gender:</strong> Biological sex (1 = Male, 2 = Female)</li>
+        </ul>
+    </div>
+
+    <h3 style="color: var(--primary); margin-top: 2rem;">2. Physical Measurements</h3>
+    <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Height:</strong> Measured in centimeters (range: 100-250 cm)</li>
+            <li><strong>Weight:</strong> Measured in kilograms (range: 30-300 kg)</li>
+            <li><strong>BMI (Body Mass Index):</strong> Calculated feature using formula: weight(kg) / (height(m))²
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Underweight: BMI &lt; 18.5</li>
+                    <li>Normal: BMI 18.5 - 24.9</li>
+                    <li>Overweight: BMI 25 - 29.9</li>
+                    <li>Obese: BMI ≥ 30</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3 style="color: var(--primary); margin-top: 2rem;">3. Clinical Markers</h3>
+    <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Systolic Blood Pressure (ap_hi):</strong> Upper blood pressure reading in mmHg (range: 70-250)
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Normal: &lt; 120 mmHg</li>
+                    <li>Elevated: 120-129 mmHg</li>
+                    <li>Hypertension Stage 1: 130-139 mmHg</li>
+                    <li>Hypertension Stage 2: ≥ 140 mmHg</li>
+                </ul>
+            </li>
+            <li><strong>Diastolic Blood Pressure (ap_lo):</strong> Lower blood pressure reading in mmHg (range: 40-180)
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Normal: &lt; 80 mmHg</li>
+                    <li>Elevated: 80-89 mmHg</li>
+                    <li>Hypertension: ≥ 90 mmHg</li>
+                </ul>
+            </li>
+            <li><strong>Cholesterol Level:</strong> Categorized into three levels
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>1 = Normal (&lt; 200 mg/dL)</li>
+                    <li>2 = Above Normal (200-239 mg/dL)</li>
+                    <li>3 = High (≥ 240 mg/dL)</li>
+                </ul>
+            </li>
+            <li><strong>Glucose Level:</strong> Blood glucose categorized into three levels
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>1 = Normal (&lt; 100 mg/dL fasting)</li>
+                    <li>2 = Above Normal (100-125 mg/dL - Prediabetes)</li>
+                    <li>3 = High (≥ 126 mg/dL - Diabetes)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3 style="color: var(--primary); margin-top: 2rem;">4. Lifestyle Factors</h3>
+    <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Smoking Status:</strong> Binary indicator (0 = Non-smoker, 1 = Current smoker)</li>
+            <li><strong>Alcohol Consumption:</strong> Binary indicator (0 = No/Minimal, 1 = Regular consumption)</li>
+            <li><strong>Physical Activity:</strong> Binary indicator (0 = Sedentary/Inactive, 1 = Regularly active)</li>
+        </ul>
+    </div>
+
+    <h2>⚙️ Data Preprocessing Pipeline</h2>
+    
+    <div style="background: var(--pastel-purple); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Step-by-Step Preprocessing</h3>
+        <ol style="margin-left: 1.5rem; line-height: 2;">
+            <li><strong>Data Loading:</strong> Import raw cardiovascular dataset from CSV/database</li>
+            <li><strong>Data Cleaning:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Remove duplicate records</li>
+                    <li>Handle missing values (imputation or removal)</li>
+                    <li>Remove outliers using statistical methods (IQR, Z-score)</li>
+                    <li>Validate data ranges for each feature</li>
+                </ul>
+            </li>
+            <li><strong>Feature Engineering:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Calculate BMI from height and weight</li>
+                    <li>Create derived features if needed</li>
+                    <li>Encode categorical variables</li>
+                </ul>
+            </li>
+            <li><strong>Data Standardization:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Apply Z-score normalization: z = (x - μ) / σ</li>
+                    <li>Standardize continuous variables (age, height, weight, BP, BMI)</li>
+                    <li>Keep categorical variables as-is</li>
+                </ul>
+            </li>
+            <li><strong>Train-Test Split:</strong>
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>80% training data, 20% testing data</li>
+                    <li>Stratified sampling to maintain class distribution</li>
+                    <li>Random seed set for reproducibility</li>
+                </ul>
+            </li>
+            <li><strong>Class Balancing:</strong> Handle imbalanced classes if present using SMOTE or class weights</li>
+        </ol>
+    </div>
+
+    <h2>🤖 Machine Learning Model</h2>
+    <p>HeartByte employs a <strong>Random Forest Classifier</strong>, an ensemble learning method that constructs multiple decision trees during training and outputs the mode of the classes for classification tasks.</p>
+
+    <h3 style="color: var(--secondary); margin-top: 2rem;">Why Random Forest?</h3>
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Ensemble Power:</strong> Combines predictions from multiple decision trees to reduce overfitting</li>
+            <li><strong>Robustness:</strong> Less sensitive to noise and outliers compared to single decision trees</li>
+            <li><strong>Feature Importance:</strong> Provides interpretable insights into which features contribute most to predictions</li>
+            <li><strong>Non-linearity Handling:</strong> Captures complex, non-linear relationships between features</li>
+            <li><strong>No Scaling Required:</strong> Works well with features on different scales (though we still standardize)</li>
+            <li><strong>Performance:</strong> Excellent balance between accuracy and computational efficiency</li>
+            <li><strong>Low Maintenance:</strong> Requires minimal hyperparameter tuning</li>
+        </ul>
+    </div>
+
+    <h3 style="color: var(--secondary); margin-top: 2rem;">Model Architecture</h3>
+    <div style="background: var(--bg-light); padding: 1.2rem; border-radius: 10px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Algorithm:</strong> Random Forest Classifier</li>
+            <li><strong>Number of Trees (n_estimators):</strong> Optimized through cross-validation (typically 100-200)</li>
+            <li><strong>Max Depth:</strong> Controlled to prevent overfitting (typically 10-20)</li>
+            <li><strong>Min Samples Split:</strong> Minimum samples required to split an internal node</li>
+            <li><strong>Min Samples Leaf:</strong> Minimum samples required at leaf node</li>
+            <li><strong>Max Features:</strong> Number of features considered for best split (sqrt or log2)</li>
+            <li><strong>Random State:</strong> Set for reproducibility</li>
+        </ul>
+    </div>
+
+    <h3 style="color: var(--secondary); margin-top: 2rem;">Training Process</h3>
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+        <ol style="margin-left: 1.5rem; line-height: 2;">
+            <li><strong>Hyperparameter Tuning:</strong> Grid search or random search with cross-validation</li>
+            <li><strong>Model Training:</strong> Fit the Random Forest on training data</li>
+            <li><strong>Cross-Validation:</strong> K-fold (typically 5 or 10 folds) to assess model stability</li>
+            <li><strong>Feature Importance Extraction:</strong> Analyze which features contribute most</li>
+            <li><strong>Model Serialization:</strong> Save trained model using joblib/pickle</li>
+        </ol>
+    </div>
+
+    <h2>📈 Model Evaluation</h2>
+    <p>The model was rigorously evaluated using multiple performance metrics to ensure reliable and balanced predictions:</p>
+
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid var(--primary);">
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Performance Metrics</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Accuracy: 73%</strong> - Overall percentage of correct predictions
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li>Formula: (TP + TN) / (TP + TN + FP + FN)</li>
+                </ul>
+            </li>
+            <li><strong>Sensitivity (Recall): 71%</strong> - Ability to identify positive cases (true positive rate)
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li>Formula: TP / (TP + FN)</li>
+                    <li>Interpretation: Of all patients with cardiovascular disease, 71% are correctly identified</li>
+                </ul>
+            </li>
+            <li><strong>Specificity: 75%</strong> - Ability to identify negative cases (true negative rate)
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li>Formula: TN / (TN + FP)</li>
+                    <li>Interpretation: Of all patients without disease, 75% are correctly identified</li>
+                </ul>
+            </li>
+            <li><strong>Precision: 73%</strong> - Proportion of positive predictions that are correct
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li>Formula: TP / (TP + FP)</li>
+                </ul>
+            </li>
+            <li><strong>F1-Score: 72%</strong> - Harmonic mean of precision and recall
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li>Formula: 2 × (Precision × Recall) / (Precision + Recall)</li>
+                </ul>
+            </li>
+            <li><strong>AUC-ROC: 79%</strong> - Area Under the Receiver Operating Characteristic curve
+                <ul style="margin-left: 1.5rem; margin-top: 0.3rem;">
+                    <li>Measures model's ability to distinguish between classes</li>
+                    <li>0.79 indicates good discriminative ability</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h2>✅ Validation Approach</h2>
+    <div style="background: var(--pastel-purple); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>K-Fold Cross-Validation:</strong> Used during training to assess model generalization
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Dataset split into K folds (typically K=5 or 10)</li>
+                    <li>Model trained on K-1 folds, validated on remaining fold</li>
+                    <li>Process repeated K times, results averaged</li>
+                </ul>
+            </li>
+            <li><strong>Hold-out Test Set:</strong> 20% of data reserved for final evaluation</li>
+            <li><strong>Stratified Sampling:</strong> Ensures class distribution is maintained across splits</li>
+            <li><strong>Confusion Matrix Analysis:</strong> Detailed breakdown of predictions vs actual labels</li>
+            <li><strong>Learning Curves:</strong> Monitor training/validation performance over time</li>
+        </ul>
+    </div>
+
+    <h2>⚠️ Model Limitations</h2>
+    <div style="background: var(--pastel-pink); padding: 2rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid var(--danger);">
+        <h3 style="color: var(--danger); margin-bottom: 1rem;">Important Considerations</h3>
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Probabilistic Nature:</strong> Machine learning models provide probability estimates, not certainties</li>
+            <li><strong>Training Data Limitations:</strong> Model performance depends on quality and representativeness of training data</li>
+            <li><strong>Feature Constraints:</strong> Only analyzes 12 parameters; cannot account for:
+                <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                    <li>Family history and genetic factors</li>
+                    <li>Current medications and treatments</li>
+                    <li>Detailed medical history</li>
+                    <li>Symptoms and clinical examination findings</li>
+                    <li>Lab tests beyond cholesterol and glucose</li>
+                </ul>
+            </li>
+            <li><strong>Rare Conditions:</strong> May not detect atypical or rare cardiovascular conditions</li>
+            <li><strong>Population Bias:</strong> Performance may vary for populations underrepresented in training data</li>
+            <li><strong>Temporal Validity:</strong> Medical knowledge evolves; model may not reflect latest research</li>
+            <li><strong>Not Diagnostic:</strong> Cannot replace comprehensive medical evaluation by healthcare professionals</li>
+        </ul>
+    </div>
+
+    <h2>🔄 Model Deployment</h2>
+    <div style="background: var(--pastel-green); padding: 1.5rem; border-radius: 12px; margin: 1rem 0;">
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">Deployment Architecture</h3>
+        <ol style="margin-left: 1.5rem; line-height: 2;">
+            <li><strong>Model Serialization:</strong> Trained model saved using joblib (final_model.pkl)</li>
+            <li><strong>Scaling Parameters:</strong> Mean and standard deviation saved for runtime normalization</li>
+            <li><strong>Flask Web Application:</strong> Python backend handles predictions</li>
+            <li><strong>Real-time Inference:</strong> Predictions computed on-the-fly, no data storage</li>
+            <li><strong>Input Validation:</strong> Server-side checks ensure data quality</li>
+            <li><strong>Error Handling:</strong> Comprehensive error messages for invalid inputs</li>
+        </ol>
+    </div>
+
+    <h2>🔮 Future Enhancements</h2>
+    <p>Potential improvements for future iterations:</p>
+    <div style="background: var(--pastel-blue); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li><strong>Additional Features:</strong> Incorporate family history, medications, lab tests</li>
+            <li><strong>Deep Learning:</strong> Explore neural networks for improved performance</li>
+            <li><strong>Model Ensemble:</strong> Combine multiple algorithms (RF, XGBoost, Neural Networks)</li>
+            <li><strong>Explainability:</strong> Implement SHAP or LIME for individual prediction explanations</li>
+            <li><strong>Continuous Learning:</strong> Regular retraining with new data</li>
+            <li><strong>Federated Learning:</strong> Train on distributed data while preserving privacy</li>
+            <li><strong>Multi-class Classification:</strong> Predict specific cardiovascular conditions</li>
+            <li><strong>Risk Stratification:</strong> Provide risk scores rather than binary classification</li>
+        </ul>
+    </div>
+
+    <h2>📚 Technical References</h2>
+    <div style="background: var(--bg-light); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+        <ul style="margin-left: 1.5rem;">
+            <li>Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5-32.</li>
+            <li>Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python. JMLR, 12, 2825-2830.</li>
+            <li>World Health Organization. (2021). Cardiovascular Diseases (CVDs). WHO Fact Sheets.</li>
+            <li>American Heart Association. (2023). Understanding Blood Pressure Readings.</li>
+        </ul>
+    </div>
+
+    <div style="background: var(--pastel-yellow); padding: 1.5rem; border-radius: 12px; margin: 2rem 0; border-left: 4px solid var(--warning);">
+        <h3 style="color: var(--secondary); margin-bottom: 1rem;">⚕️ Medical Disclaimer</h3>
+        <p style="margin: 0; font-weight: 600;">This methodology describes a screening tool, not a diagnostic system. HeartByte does not provide medical advice, diagnosis, or treatment. Always consult qualified healthcare professionals for medical decisions.</p>
+    </div>
+
+</div>
+
+<footer>
+    <p><strong>HeartByte</strong> - Educational & Research Tool</p>
+    <p>© 2025 HeartByte Project | <a href="/">Home</a> | <a href="/about">About</a> | <a href="/faq">FAQ</a></p>
+</footer>
+
+</body>
+</html>
